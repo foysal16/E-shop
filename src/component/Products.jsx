@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
 
 export const Products = () => {
   const [data, setData] = useState([]);
@@ -6,7 +7,7 @@ export const Products = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let isMounted = true; 
+    let isMounted = true;
 
     const getProduct = async () => {
       setLoading(true);
@@ -34,28 +35,39 @@ export const Products = () => {
     };
   }, []);
 
+  const filterProduct=(key)=>{
+    const updateList = data.filter((x)=>x.category === key)
+    setFilter(updateList)
+  }
+
   const Loading = () => {
-    return <>Loading......</>;
+    return (
+      <div className="col-md-3">
+        <Skeleton height={350} />
+        <Skeleton height={350} />
+        <Skeleton height={350} />
+      </div>
+    );
   };
 
   const ShowProducts = () => {
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button type="button" className="btn btn-outline-primary me-3">
+          <button type="button" className="btn btn-outline-primary me-3" onClick={()=>setFilter(data)}>
             All
           </button>
-          <button type="button" className="btn btn-outline-primary me-3">
+          <button type="button" className="btn btn-outline-primary me-3" onClick={()=>filterProduct("men's clothing")}>
             Mens Cloths
           </button>
-          <button type="button" className="btn btn-outline-primary me-3">
+          <button type="button" className="btn btn-outline-primary me-3" onClick={()=>filterProduct("women's clothing")}>
             Women Cloths
           </button>
-          <button type="button" className="btn btn-outline-primary me-3">
-            Pants
+          <button type="button" className="btn btn-outline-primary me-3" onClick={()=>filterProduct("jewelery")}>
+            Jewelery
           </button>
-          <button type="button" className="btn btn-outline-primary me-3">
-            Shirt
+          <button type="button" className="btn btn-outline-primary me-3" onClick={()=>filterProduct("electronic")}>
+            Electronic
           </button>
         </div>
         <div className="row">
