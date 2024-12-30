@@ -1,0 +1,12 @@
+.navbar-nav .nav-item{
+    font-size: 18px;
+}
+
+  
+  .card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
